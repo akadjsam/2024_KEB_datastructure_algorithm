@@ -11,8 +11,11 @@
 #
 # print(nCr(7,0))
 
-def factorial(n):
-    pass
+def factorial(n) -> int: #
+    result = 1
+    for i in range(1,n+1):
+        result *= i
+    return result
 def nCr(n,r) -> int:
     """
     조합 함수
@@ -22,7 +25,7 @@ def nCr(n,r) -> int:
     """
     numerator = factorial(n)
     denominator = factorial(n-r) * factorial(r)
-    return numerator / denominator
+    return int(numerator / denominator)
 
 if __name__ == "__main__":
     n = int(input("Input n: "))
