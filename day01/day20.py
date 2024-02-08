@@ -1,38 +1,37 @@
-def print_poly(p_x) -> str:
+def print_poly(t_x, f_x) -> str:
     """
     다항식 출력
-    :param p_x:
+    :param f_x:
     :return tpye -> str:
     """
-    term = len(p_x) - 1
+    term = len(f_x) - 1
     poly_expression = "f(x) = "
 
     for i in range(len(fx)):
-        coefficient = p_x[i]
-
-        if coefficient >= 0:
+        term = t_x[i]
+        coefficient = f_x[i]
+        if coefficient > 0 and i!=0:
             poly_expression += "+"
-        poly_expression += f'{coefficient}x^{term} '
-        term -= 1
-
+        if coefficient != 0:
+            poly_expression += f'{coefficient}x^{term} '
     return poly_expression
 
 
 def calculation_poly(x_val, f_x) -> int:
     ret_value = 0
-    term = len(f_x) - 1  # 최고차항 숫자 = 배열길이-1
+    #term = len(f_x) - 1
 
     for i in range(len(fx)):
         coefficient = f_x[i]  # 계수
-        ret_value += coefficient * x_val ** term
-        term -= 1
+        ret_value += coefficient * x_val ** tx[i]
+        #term -= 1
 
     return ret_value
-
-fx = [2, 3, 5, 0, -9]
+tx = [300, 20, 0]
+fx = [7, -4, 5]
 
 if __name__ == "__main__":
-    print(print_poly(fx))
+    print(print_poly(tx,fx))
     print(calculation_poly(int(input("X 값 : ")), fx))
 
 
