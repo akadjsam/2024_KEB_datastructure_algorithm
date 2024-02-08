@@ -1,25 +1,38 @@
-import math
-from math import log2
+def print_poly(p_x) -> str:
+    """
+    다항식 출력
+    :param p_x:
+    :return tpye -> str:
+    """
+    term = len(p_x) - 1
+    poly_expression = "f(x) = "
 
-import mymath
-import time
-import random
+    for i in range(len(fx)):
+        coefficient = p_x[i]
+
+        if coefficient >= 0:
+            poly_expression += "+"
+        poly_expression += f'{coefficient}x^{term} '
+        term -= 1
+
+    return poly_expression
+
+
+def calculation_poly(x_val, f_x) -> int:
+    ret_value = 0
+    term = len(f_x) - 1  # 최고차항 숫자 = 배열길이-1
+
+    for i in range(len(fx)):
+        coefficient = f_x[i]  # 계수
+        ret_value += coefficient * x_val ** term
+        term -= 1
+
+    return ret_value
+
+fx = [2, 3, 5, 0, -9]
+
 if __name__ == "__main__":
-    rangenumber = int(input("범위를 지정하세요 : "))
-    answer = random.randrange(1, rangenumber+1)
-    n = count = math.ceil(log2(rangenumber))
-    print(count)
-    while count != 0:
-        count -= 1
-        number = int(input("답을 유추하세요 : "))
-        if number == answer:
-            print("정답입니다.")
-            break
-        elif number < answer:
-            print("up!")
-        else:
-            print("down!")
-    else:
-        print(f"정답을 맞추지 못했습니다. 정답은 {answer} 입니다.")
-    print(f'시도횟수는 : {n-count} 입니다.')
+    print(print_poly(fx))
+    print(calculation_poly(int(input("X 값 : ")), fx))
+
 
