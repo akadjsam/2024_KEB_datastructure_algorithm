@@ -4,10 +4,9 @@ def decimal_to_octal(number:int) -> str:
     :param number: int
     :return: str
     """
-    octal = ""
-    while number > 0:
-        octal = str(number % 8) + octal
-        number = number // 8
-    return octal
+    if number < 8:
+        return str(number)
+    else:
+        return decimal_to_octal(number//8) + str(number%8)
 
-print(decimal_to_octal(10))
+print(decimal_to_octal(100))
