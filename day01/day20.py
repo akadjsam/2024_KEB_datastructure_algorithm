@@ -37,9 +37,10 @@ def fibo_memoization(number : int, memo) -> int:
 
 for i in range(0, 40):
     print(fibo_memoization(i,memo), end=' ')
-print()
-for i in range(0, 40):
-    print(fibo_recursion(i), end=' ')
-print()
-for i in range(0, 40):
-    print(fibo_repetition(i), end=' ')
+
+# print()
+# for i in range(0, 40):
+#     print(fibo_recursion(i), end=' ')
+# print()
+# for i in range(0, 40):
+#     print(fibo_repetition(i), end=' ')
