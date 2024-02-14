@@ -1,12 +1,24 @@
-def decimal_to_octal(number:int) -> str:
+def fibo_recursion(n : int) -> int:
     """
-    decimal -> octal
-    :param number: int
-    :return: str
+    fibonacci function by recursion
+    :param n: int
+    :return: int
     """
-    if number < 8:
-        return str(number)
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
     else:
-        return decimal_to_octal(number//8) + str(number%8)
+        return fibo_recursion(n-1) + fibo_recursion(n-2)
 
-print(decimal_to_octal(100))
+def fibo_repetition(number : int) -> int:
+    a = 0
+    b = 1
+    for _ in range(number):
+        a,b = b, a+b
+    return a
+for i in range(0, 20):
+    print(fibo_recursion(i), end=' ')
+print()
+for i in range(0, 20):
+    print(fibo_repetition(i), end=' ')
