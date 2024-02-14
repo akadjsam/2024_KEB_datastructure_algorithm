@@ -1,27 +1,18 @@
-def check_bracket(expr : str) -> bool:
-    """
-    :param expr: str
-    :return: bool
-    """
-    stack = []
-    table = {")": "(", "]": "[", "}": "{", ">": "<"}
-    for char in expr:
-        if char in table.values():
-            stack.append(char)
-        elif char in table.keys():
-            if not stack or table[char] != stack.pop():
-                print("!")
-                return False
-        else:
-            pass
-    return len(stack) == 0
+graph =[
+    [0,1,0,1,0],
+    [1,0,1,1,0],
+    [0,1,0,0,1],
+    [1,1,0,0,1],
+    [0,0,1,1,0]
+]
 
-## 전역 변수 선언 부분 ##
-size = 20
-stack = [None for _ in range(size)]
-top = -1
+def dfs(g, v, visited):
+    visited[v] = True
+    print(chr(ord('A')+v),end=' ')
+    for i in range(len(g)):
+        if g[v][i] == True and not visited[i]:
+            dfs(g,i,visited)
 
-## 메인 코드 부분 ##
-if __name__ == "__main__":
-    expression = input("Input expression : ")
-    print(check_bracket(expression))
+visited = [False]*len(graph)
+
+dfs(graph,0,visited)
