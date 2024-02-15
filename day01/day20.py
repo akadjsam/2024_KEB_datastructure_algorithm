@@ -21,6 +21,10 @@ def fibo_memoization(number : int) -> int:
 # n = int(input("input : ")) #input box로 대체
 # print(f'f({n}) = {fibo_memoization(n)}') #Label로 대체
 
+def process_fibo():
+    number = int(en_input_number.get())
+    ldl_dissplay_fibo_result.config(text=f'f({number}) = {fibo_memoization(number)}')
+
 if __name__ == '__main__':
     w = tk.Tk() #create window object
     w.title("Fibonacci")
@@ -29,12 +33,12 @@ if __name__ == '__main__':
     #create widget
     ldl_dissplay_fibo_result = tk.Label(w, text='Fibonacci by memoization')
     en_input_number = tk.Entry(w,)
-    btn_click = tk.Button(w, text="Click")
+    btn_click = tk.Button(w, text="Click", command=process_fibo)
 
     #
     ldl_dissplay_fibo_result.pack()
     en_input_number.pack(fill='x')
     btn_click.pack(fill='x')
 
-
+    en_input_number.focus()
     w.mainloop()
