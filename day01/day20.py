@@ -1,38 +1,30 @@
 from collections import deque
 
-graph =[
-    [0,1,1,0,0,0,0,0],
-    [1,0,0,1,0,0,0,0],
-    [1,0,0,1,0,0,0,0],
-    [0,1,1,0,1,1,1,0],
-    [0,0,0,1,0,1,0,0],
-    [0,0,0,1,1,0,0,0],
+# input_data = list(map(int, input().split()))
+n,m,k,x=  map(int, input().split())
+b = []
+graph = [[] for _ in range(n+1)]
 
-    [0,0,0,1,0,0,0,1],
-    [0,0,0,0,0,0,1,0]
-]
+for _ in range(m):
+    s,e = map(int,input().split())
+    graph[s].append(e)
 
-def dfs(g, v, visited):
-    visited[v] = True
-    print(chr(ord('A')+v),end=' ')
-    for i in range(len(g)):
-        if g[v][i] == True and not visited[i]:
-            dfs(g,i,visited)
+distance = [-1] * (n+1)
+distance[x] = 0
 
-def bfs(g,v,visited):
-    queue = deque([v])
-    visited[v] = 1
-    while queue:
-        v = queue.popleft()
-        print(chr(ord('A')+v),end=' ')
-        for i in range(len(g)):
-            if g[v][i] == True and not visited[i]:
-                queue.append(i)
-                visited[i] = 1
+# bfs
+q = deque([x])
+while q:
+    now = q.popleft()
+    for next in graph[now]:
+        if distance[next] == -1:
+            distance[next] = distance[now] + 1
+            q.append(next)
+check = False
+for i in range(1,n+1):
+    if distance[i] == k:
+        print(i)
+        check = True
 
-visited1 = [False]*len(graph)
-visited2 = [False]*len(graph)
-
-dfs(graph,0,visited1)
-print()
-bfs(graph,0,visited2)
+if check == False:
+    print(-1)
