@@ -1,44 +1,24 @@
-import tkinter as tk
+def bianry_search(arr, data):
+    start = 0
+    end = len(arr)-1
+    while(start<=end):
+        n = (start+end)//2
+        if data == arr[n]:
+            return n
+        elif data > arr[n]:
+            start = n+1
+        else:
+            end = n-1
+    return -1
+def search(arr, data):
+    for i in range(len(arr)):
+        print(arr[i], end=' ')
+        if data == arr[i]:
+            print()
+            return i
+    return -1
 
-
-#memo = [0 if i==0 else 1 if i==1 else None for i in range(100)]
-memo = [0,1] + [None] * (100-1)
-def fibo_memoization(number : int) -> int:
-    """
-    fibonacci function by recursion with memoization
-    :param n: int
-    :return: int
-    """
-    if memo[number] is not None:
-        return memo[number]
-    if number < 2:
-        result = number
-    else:
-        result = fibo_memoization(number-1) + fibo_memoization(number-2)
-    memo[number] = result
-    return result
-
-# n = int(input("input : ")) #input box로 대체
-# print(f'f({n}) = {fibo_memoization(n)}') #Label로 대체
-
-def process_fibo():
-    number = int(en_input_number.get())
-    ldl_dissplay_fibo_result.config(text=f'f({number}) = {fibo_memoization(number)}')
-
-if __name__ == '__main__':
-    w = tk.Tk() #create window object
-    w.title("Fibonacci")
-    w.geometry("300x150")
-
-    #create widget
-    ldl_dissplay_fibo_result = tk.Label(w, text='Fibonacci by memoization')
-    en_input_number = tk.Entry(w,)
-    btn_click = tk.Button(w, text="Click", command=process_fibo)
-
-    #
-    ldl_dissplay_fibo_result.pack()
-    en_input_number.pack(fill='x')
-    btn_click.pack(fill='x')
-
-    en_input_number.focus()
-    w.mainloop()
+a = [1,2,3,4,5,6]
+find_data = 4
+print(search(a,find_data))
+print(bianry_search(a,find_data))
